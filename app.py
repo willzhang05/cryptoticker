@@ -27,8 +27,10 @@ def end():
     return statement(speech)
 
 
-@ask.intent('AMAZON.CancelIntent')(end)
-@ask.intent('AMAZON.StopIntent')(end)
+ask.intent('AMAZON.CancelIntent')(end)
+ask.intent('AMAZON.StopIntent')(end)
+
+
 @ask.intent('AMAZON.HelpIntent')
 def help():
     help_message = 'You can say tell me the price of a cryptocurrency, for example, bitcoin or ethereum. You can also say exit... What can I help you with?'
@@ -44,7 +46,11 @@ def get_price(coin):
         out = r.json()[0]
         speech = 'The market price of {} is currently {} US Dollars'.format(coin, out[
                                                                             'price_usd'])
+        logger.info('speech = {}'.format(speech))
+        return statement(speech).simple_card(
+            title='Price of ' + coin,
+            content='$' + out['price_usd'] + ' USD')
     else:
         speech = 'Sorry, I don\'t know that coin'
-    logger.info('speech = {}'.format(speech))
-    return statement(speech)
+        logger.info('speech = {}'.format(speech))
+        return statement(speech)

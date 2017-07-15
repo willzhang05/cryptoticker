@@ -1,3 +1,5 @@
+zappa_settings.json
+format.sh
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
