@@ -38,7 +38,7 @@ ask.launch(help)
 def get_price(coin):
     print(request)
     if coin == 'NULL':
-        error_message = 'Please specify a cryptocurrency... What can I help you with?'
+        error_message = 'Sorry, I didn\'t get that. Please specify a cryptocurrency... What can I help you with?'
         error_reprompt = 'What would you like me to do?'
         logger.info('question = {}, {}'.format(error_message, error_reprompt))
         return question(error_message).reprompt(error_reprompt)
